@@ -1,5 +1,5 @@
 import socketio
-from PIL import Image
+from PIL import Image, ImageDraw, ImageFont
 from pymitter import EventEmitter
 
 with open("token.txt", "r") as f:
@@ -28,7 +28,7 @@ def disconnect():
 
 @sio.on("event")
 def event(data):
-    if "for" not in data or data["for"] == "twitch_account":
+    if "for" not in data or not data["for"] == "twitch_account":
         return
 
     for message in data["message"]:
@@ -37,12 +37,17 @@ def event(data):
 
 @ee.on("streamlabs.follow")
 def follow_event(data):
-    pass
+    print("Follow event")
 
 
 @ee.on("streamlabs.subscription")
 def subscription_event(data):
-    pass
+    print("Sub event")
+
+
+@ee.on("streamlabs.resub")
+def resub_event(data):
+    ee.emit("streamlabs.subscription", data)
 
 
 @ee.on("streamlabs.bits")
