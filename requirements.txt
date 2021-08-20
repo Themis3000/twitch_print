@@ -1,2 +1,3 @@
-python-socketio[client]
-requests
+python-socketio[client]==5.0.4
+python-engineio==3.14.2
+pymitter
