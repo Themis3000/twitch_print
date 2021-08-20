@@ -9,4 +9,6 @@ This project is used by me at https://twitch.tv/themis3000 with a receipt printe
 1. Run `pip3 install -r requirement.txt` in this directory
 2. Create an account on streamlabs and get your socket access token (found in `settings > api settings > api tokens`)
 3. Create a file named token.txt and paste your access token in it
-4. Edit the `print_img` method in `printer.py` to handle the incoming image and print it
+4. Edit the `print_img` method in `printer.py` to handle the incoming image and print it (note: images passed in will have a width of 550px and could have any height)
+
+Feel free to create an issue or email me to reach out for help setting this up if you're interested
