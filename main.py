@@ -30,7 +30,7 @@ for image_path in image_paths:
 bits_dict = {1: "1.png", 100: "100.png", 1000: "1000.png", 5000: "5000.png", 10000: "10000.png"}
 
 sio = socketio.Client(reconnection_delay_max=0)
-# sio.connect(f"https://sockets.streamlabs.com?token={token}", transports=["websocket"])
+sio.connect(f"https://sockets.streamlabs.com?token={token}", transports=["websocket"])
 
 ee = EventEmitter()
 
