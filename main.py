@@ -67,7 +67,7 @@ def follow_event(data):
 
 @ee.on("streamlabs.subscription")
 def subscription_event(data):
-    body_str = f"Has subscribed for the {make_ordinal(data['months'])} month\n" \
+    body_str = f"Has subscribed for the {make_ordinal(data['months'])} month\n\n" \
                f"\"{data['message']}\""
     image = gen_img(images["sub.png"], data["name"], body_str)
     print_img(image)
@@ -85,7 +85,7 @@ def bits_event(data):
         if int(data["amount"]) >= key:
             bit_symbol_path = img_path
 
-    body_str = f"Has cheered {data['amount']} bits\n" \
+    body_str = f"Has cheered {data['amount']} bits\n\n" \
                f"\"{data['message']}\""
     image = gen_img(images[bit_symbol_path], data["name"], body_str)
     print_img(image)

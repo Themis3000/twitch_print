@@ -8,7 +8,7 @@ font_body = ImageFont.truetype('assets/Roboto-Medium.ttf', 30)
 
 
 def gen_img(img, header_text, body_text):
-    img_out = Image.new("RGBA", (paper_width, paper_width), color=(255, 255, 255, 0))
+    img_out = Image.new("RGBA", (paper_width, paper_width-40), color=(255, 255, 255, 0))
 
     # paste input image centered and at the top of the img_out
     img_width, img_height = img.size
