@@ -52,10 +52,12 @@ def disconnect():
 
 @sio.on("event")
 def event(data):
+    print(data)
     if "for" not in data or not data["for"] == "twitch_account":
         return
 
     for message in data["message"]:
+        print(f"_____\n{data['type']} - {message}\n_____")
         ee.emit(f"streamlabs.{data['type']}", message)
 
 
@@ -67,9 +69,25 @@ def follow_event(data):
 
 @ee.on("streamlabs.subscription")
 def subscription_event(data):
-    body_str = f"Has subscribed for the {make_ordinal(data['months'])} month\n\n" \
-               f"\"{data['message']}\""
+    if data.get("gifter", None) is not None:
+        ee.emit("streamlabs.giftedsubscription", data)
+        return
+
+    body_str = f"Has subscribed for the {make_ordinal(data['months'])} month"
+    if data["message"]:
+        body_str += f"\n\n\"{data['message']}\""
+
     image = gen_img(images["sub.png"], data["name"], body_str)
+    print_img(image)
+
+
+@ee.on("streamlabs.giftedsubscription")
+def giftedsubscription_event(data):
+    body_str = f"Has gifted a sub to {data['name']}"
+    if data["message"]:
+        body_str += f"\n\n\"{data['message']}\""
+
+    image = gen_img(images["sub.png"], data["gifter"], body_str)
     print_img(image)
 
 
@@ -85,8 +103,10 @@ def bits_event(data):
         if int(data["amount"]) >= key:
             bit_symbol_path = img_path
 
-    body_str = f"Has cheered {data['amount']} bits\n\n" \
-               f"\"{data['message']}\""
+    body_str = f"Has cheered {data['amount']} bits"
+    if data["message"]:
+        body_str += f"\n\n\"{data['message']}\""
+
     image = gen_img(images[bit_symbol_path], data["name"], body_str)
     print_img(image)
 
