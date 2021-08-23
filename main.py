@@ -87,7 +87,7 @@ def giftedsubscription_event(data):
     if data["message"]:
         body_str += f"\n\n\"{data['message']}\""
 
-    image = gen_img(images["sub.png"], data["gifter"], body_str)
+    image = gen_img(images["gifted_sub.png"], data["gifter"], body_str)
     print_img(image)
 
 
