@@ -1,7 +1,7 @@
 ### Currently incomplete/non-working
 
 # Twitch receipt printer
-This repo aims ot make it easy (for a developer) to implement printing twitch notifications on a physical receipt printer. This repo utilizes streamlab's socket api in order to receive notifications. You will have to implement the actual printing part yourself, but the entire process of generating the image to be printed and the socket handling will all be handled for you.
+This repo aims ot make it easy (for a developer) to implement printing twitch notifications on a physical receipt printer (could be any type of device that prints images, but this was built with receipts in mind). This repo utilizes streamlab's socket api in order to receive notifications. You will have to implement the actual printing part yourself, but the entire process of generating the image to be printed and the socket handling will all be handled for you.
 
 This project is used by me at https://twitch.tv/themis3000 with a receipt printer
 
